@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-number = 0  # placeholder, grader replaces this during tests
-
-if number > 0:
-    print(f"{number} is positive")
-elif number == 0:
-    print(f"{number} is zero")
+import random
+number = random.randint(-10, 10)
+if number < 0:
+    print("{:d} is negative".format(number))
+elif number > 0:
+    print("{:d} is positive".format(number))
 else:
-    print(f"{number} is negative")
+    print("0 is zero")
