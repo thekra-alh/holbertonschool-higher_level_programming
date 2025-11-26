@@ -9,3 +9,6 @@ elif number == 0:
     print(f"{number} is zero")
 else:
     print(f"{number} is negative")
+    number = 98   # test positive
+# number = -98  # test negative
+# number = 0    # test zero
