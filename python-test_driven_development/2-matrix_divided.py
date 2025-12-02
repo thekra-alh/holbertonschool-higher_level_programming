@@ -12,7 +12,7 @@ def matrix_divided(matrix, div):
         div (int/float): The divisor.
 
     Raises:
-        TypeError: If the matrix contains non-numbers.
+        TypeError: If the matrix contains non-numbers or empty rows.
         TypeError: If the matrix contains rows of different sizes.
         TypeError: If div is not an int or float.
         ZeroDivisionError: If div is 0.
@@ -21,9 +21,8 @@ def matrix_divided(matrix, div):
         A new matrix representing the result of the division.
     """
     if (not isinstance(matrix, list) or matrix == [] or
-            not all(isinstance(row, list) for row in matrix) or
-            not all(isinstance(ele, (int, float))
-                    for row in matrix for ele in row)):
+            not all(isinstance(row, list) and row for row in matrix) or
+            not all(isinstance(ele, (int, float)) for row in matrix for ele in row)):
         raise TypeError(
             "matrix must be a matrix (list of lists) of integers/floats"
         )
@@ -42,7 +41,4 @@ def matrix_divided(matrix, div):
         return [[0.0 for _ in row] for row in matrix]
 
     # Regular division with rounding
-    return [
-        [round(ele / div, 2) for ele in row]
-        for row in matrix
-    ]
+    return [[round(ele / div, 2) for ele in row] for row in matrix]
