@@ -10,16 +10,15 @@ def text_indentation(text):
         raise TypeError("text must be a string")
 
     text = text.strip()
+    new_line = False  # flag to add leading space
 
-    i = 0
-    while i < len(text):
-        char = text[i]
+    for char in text:
+        if new_line and char != " ":
+            print(" ", end="")  # add leading space exactly once
+            new_line = False
+
         print(char, end="")
-        if char in ['.', '?', ':']:
-            print()
-            print()
-            i += 1
-            while i < len(text) and text[i] == ' ':
-                i += 1
-            i -= 1
-        i += 1
+
+        if char in ".?:":
+            print("\n\n", end="")
+            new_line = True
